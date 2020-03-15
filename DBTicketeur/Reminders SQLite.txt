@@ -1,8 +1,0 @@
-Tutorials creation
-https://www.javatpoint.com/java-sqlite
-https://www.sqlitetutorial.net/sqlite-java/sqlite-jdbc-driver/
-
-
-Pour ajouter au classpath de Gradle
-https://stackoverflow.com/questions/50377264/using-sqlite-jdbc-driver-in-a-gradle-java-project
-https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.30.1
