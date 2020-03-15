@@ -1,0 +1,12 @@
+Tutorials creation
+https://www.javatpoint.com/java-sqlite
+https://www.sqlitetutorial.net/sqlite-java/sqlite-jdbc-driver/
+
+
+Pour ajouter au classpath de Gradle
+https://stackoverflow.com/questions/50377264/using-sqlite-jdbc-driver-in-a-gradle-java-project
+https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.30.1
+
+
+SQL CONCAT TABLE (multiple tags)
+https://stackoverflow.com/questions/51128832/what-is-the-best-way-to-design-a-tag-based-data-table-with-sqlite
