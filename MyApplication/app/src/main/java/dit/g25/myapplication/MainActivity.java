@@ -3,6 +3,7 @@ package dit.g25.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,21 +12,17 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Calendar;
-import java.util.Date;
 
 import dit.g25.myapplication.modele.Billet;
-import dit.g25.myapplication.modele.BilletDAOSQLite;
-import dit.g25.myapplication.modele.DAOException;
 import dit.g25.myapplication.modele.DatabaseHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private Button envoye;
     private EditText titre;
 
-
     //variables globales de la date
     Calendar dateCouranteGlobal;
     LocalDate dateLimiteGlobal;
@@ -50,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DatabaseHandler db = new DatabaseHandler(this);
 
         prenom = (EditText) findViewById(R.id.inputPrenom);
         nom = (EditText) findViewById(R.id.inputNom);
@@ -59,6 +54,21 @@ public class MainActivity extends AppCompatActivity {
         message = (EditText) findViewById(R.id.inputMessage);
         envoye = (Button) findViewById(R.id.btnSubmit);
         titre = (EditText) findViewById(R.id.inputTitre);
+
+        LocalDate dateUn = LocalDate.of(2020, Month.MARCH, 11);
+        LocalDate dateDeux = LocalDate.of(2020, Month.MARCH, 16);
+
+        Billet mockBillet1 = new Billet(9029,"TEST", dateUn , "Mock Billet 1",
+                dateDeux, "Danny","Ticketeur" );
+
+        Billet mockBillet2 = new Billet(0303,"TEST2", dateUn , "Mock Billet 2",
+                dateDeux, "Danny","Ticketeur" );
+
+        DatabaseHandler db = DatabaseHandler.getInstance(this);
+        //db.supprimer(mockBillet1);
+        //db.supprimer(mockBillet2);
+        db.inserer(mockBillet1);
+        db.inserer(mockBillet2);
 
         // **Code pour les dates**
         // Afficher la date courante
@@ -110,11 +120,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 validate(titre.getText().toString(),dateDebut.getText().toString(),message.getText().toString(),date.getText().toString(),nom.getText().toString(),
                         prenom.getText().toString());
-
-
             }
         });
-
     }
     // Configure le bouton pour récupérer les informations du formulaire
     private void validate(String unTitre,String dateCourante, String contenue, String uneDateLimite, String unNom, String unPrenom){
@@ -151,9 +158,12 @@ public class MainActivity extends AppCompatActivity {
             unBillet.setNomAuteur(auteur);
 
             // Envoyer le billet dans la base de donnée
-            DatabaseHandler db = new DatabaseHandler(this);
+            DatabaseHandler db = DatabaseHandler.getInstance(this);
             db.inserer(unBillet);
         }
-
+    }
+    public void voirBillets(View view){
+        Intent intent = new Intent(MainActivity.this, VoirBillets.class);
+        startActivity(intent);
     }
 }

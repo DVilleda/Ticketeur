@@ -113,19 +113,4 @@ public class Billet {
                 " \nContenu du billet: "+contenu+ " \nNom de l'auteur: "+nomAuteur+" Nom du projet: "+
                 nomProjet+" \nDate limite pour completer la tache: "+ dateLimite+"\n";
     }
-
-    public static void main(String[] args) {
-
-        LocalDate dateUn = LocalDate.of(2020, Month.MARCH, 11);
-        LocalDate dateDeux = LocalDate.of(2020, Month.MARCH, 16);
-
-        Billet test = new Billet(9029,"TEST", dateUn , "Ceci est un billet de test!!!",
-                dateDeux, "Danny Villeda","Ticketeur" );
-
-        System.out.println(test.toString());
-
-
-
-    }
-
 }
