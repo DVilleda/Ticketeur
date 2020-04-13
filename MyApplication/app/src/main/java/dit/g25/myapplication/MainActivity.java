@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         envoye = (Button) findViewById(R.id.btnSubmit);
         titre = (EditText) findViewById(R.id.inputTitre);
 
+<<<<<<< HEAD
 
         /**Creation de deux Mock Billets pour la bd de l'application ainsi que la creation de la BD
          * de l'application
@@ -68,6 +69,20 @@ public class MainActivity extends AppCompatActivity {
 
         // le DatabaseHandler est en charge de tous les actions de la bd
         DatabaseHandler db = DatabaseHandler.getInstance(this);
+=======
+        LocalDate dateUn = LocalDate.of(2020, Month.MARCH, 11);
+        LocalDate dateDeux = LocalDate.of(2020, Month.MARCH, 16);
+
+        Billet mockBillet1 = new Billet(9029,"TEST", dateUn , "Mock Billet 1",
+                dateDeux, "Danny","Ticketeur" );
+
+        Billet mockBillet2 = new Billet(0303,"TEST2", dateUn , "Mock Billet 2",
+                dateDeux, "Danny","Ticketeur" );
+
+        DatabaseHandler db = DatabaseHandler.getInstance(this);
+        //db.supprimer(mockBillet1);
+        //db.supprimer(mockBillet2);
+>>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
         db.inserer(mockBillet1);
         db.inserer(mockBillet2);
 
@@ -124,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+<<<<<<< HEAD
 
     /**
      * Cette methode ferme la connection a la BD lorsque l'application sera ferme
@@ -134,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
         db.close();
         super.onDestroy();
     }
+=======
+>>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
     // Configure le bouton pour récupérer les informations du formulaire
     private void validate(String unTitre,String dateCourante, String contenue, String uneDateLimite, String unNom, String unPrenom){
         //Obliger les utilisateurs a remplire certain champs
@@ -173,12 +191,15 @@ public class MainActivity extends AppCompatActivity {
             db.inserer(unBillet);
         }
     }
+<<<<<<< HEAD
 
     /**
      * Cette methode va permettre de passer a un deuxieme ecran ou on sera capable de visualiser les
      * billets qui sont dans la base de donnees
      * @param view la vue courante
      */
+=======
+>>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
     public void voirBillets(View view){
         Intent intent = new Intent(MainActivity.this, VoirBillets.class);
         startActivity(intent);

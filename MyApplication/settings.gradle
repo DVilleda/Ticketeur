@@ -1,2 +1,6 @@
 rootProject.name='My Application'
+<<<<<<< HEAD
 include ':app'
+=======
+include ':app', ':sqlite-jdbc-3.30.1'
+>>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
