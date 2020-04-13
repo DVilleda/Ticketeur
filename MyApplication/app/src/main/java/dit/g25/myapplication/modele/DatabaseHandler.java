@@ -96,10 +96,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Billet billet = new Billet(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), LocalDate.parse(cursor.getString(2)),
+        Billet billet = new Billet(Integer.parseInt(cursor.getString(0)),cursor.getString(1), LocalDate.parse(cursor.getString(2)),
                 cursor.getString(4),LocalDate.parse(cursor.getString(3)),
-                cursor.getString(5),cursor.getString(6));
+                cursor.getString(6),cursor.getString(5));
 
         return billet;
     }
@@ -126,7 +125,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(billetID,unBillet.getIdBillet());
+        //values.put(billetID,unBillet.getIdBillet());
         values.put(titre,unBillet.getTitre());
         values.put(dateSoumis,unBillet.getDateSoumis().toString());
         values.put(dateLimite,unBillet.getDateLimite().toString());
@@ -154,5 +153,4 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(billet.getIdBillet())});
         db.close();
     }
-
 }

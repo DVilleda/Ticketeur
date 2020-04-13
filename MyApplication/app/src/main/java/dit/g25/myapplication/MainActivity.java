@@ -12,18 +12,15 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-
-
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-
 import dit.g25.myapplication.modele.Billet;
 import dit.g25.myapplication.modele.DatabaseHandler;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,24 +52,12 @@ public class MainActivity extends AppCompatActivity {
         envoye = (Button) findViewById(R.id.btnSubmit);
         titre = (EditText) findViewById(R.id.inputTitre);
 
-        LocalDate dateUn = LocalDate.of(2020, Month.MARCH, 11);
-        LocalDate dateDeux = LocalDate.of(2020, Month.MARCH, 16);
-
-        Billet mockBillet1 = new Billet(9029,"TEST", dateUn , "Mock Billet 1",
-                dateDeux, "Danny","Ticketeur" );
-
-        Billet mockBillet2 = new Billet(0303,"TEST2", dateUn , "Mock Billet 2",
-                dateDeux, "Danny","Ticketeur" );
-
+        //Creation d'une instance de la BD
         DatabaseHandler db = DatabaseHandler.getInstance(this);
-        //db.supprimer(mockBillet1);
-        //db.supprimer(mockBillet2);
-        db.inserer(mockBillet1);
-        db.inserer(mockBillet2);
 
         // **Code pour les dates**
         // Afficher la date courante
-        Calendar calendar = Calendar.getInstance();
+        final Calendar calendar = Calendar.getInstance();
         dateCouranteGlobal = calendar;
         String currentDate = DateFormat.getDateInstance(DateFormat.LONG).format(calendar.getTime());
 
@@ -93,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
-                dateLimiteGlobal = LocalDate.of(année,mois,jour);
             }
         });
 
@@ -109,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 // fin
                 String retourDate = month + " "+jour+", "+année;
                 date.setText(retourDate);
+                dateLimiteGlobal = LocalDate.of(année,mois+1,jour);
             }
         };
         // **Fin du code pour les dates**
@@ -151,9 +136,6 @@ public class MainActivity extends AppCompatActivity {
             LocalDate dateLimite = dateLimiteGlobal;
             //Entrez les valeur dans l'objet Billet.
             Billet unBillet = new Billet(1,unTitre, localdate, contenue, dateLimite, unNom,"Ticketeur");
-
-            unBillet.setDateLimite(dateLimite);
-
             String auteur = prenom.getText().toString() + " " + nom.getText().toString();
             unBillet.setNomAuteur(auteur);
 
