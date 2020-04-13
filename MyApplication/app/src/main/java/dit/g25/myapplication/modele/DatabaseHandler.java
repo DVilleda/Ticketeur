@@ -5,23 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-<<<<<<< HEAD
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.*;
-=======
-import android.provider.BaseColumns;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.*;
-
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
 import androidx.annotation.Nullable;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-<<<<<<< HEAD
     //Variable qui servira de singleton pour synchroniser les donnees de la bd avec l'app
     private static DatabaseHandler singletonInstance;
 
@@ -31,10 +21,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * @param context la fenetre ou l'utilisateur se trouve
      * @return retourne l'instance de la BD est donc permet de lire et ecrire dans la BD
      */
-=======
-    private static DatabaseHandler singletonInstance;
-
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
     public static synchronized DatabaseHandler getInstance(Context context){
         if (singletonInstance == null) {
             singletonInstance = new DatabaseHandler(context.getApplicationContext());
@@ -72,51 +58,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             ");";
 
     /**
-<<<<<<< HEAD
      * Constructeur de la classe
-=======
-     * Create a helper object to create, open, and/or manage a database.
-     * This method always returns very quickly.  The database is not actually
-     * created or opened until one of {@link #getWritableDatabase} or
-     * {@link #getReadableDatabase} is called.
-     *
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
      * @param context to use for locating paths to the the database
      */
     private DatabaseHandler(@Nullable Context context) {
         super(context, dbname, null, dbversion);
     }
 
-<<<<<<< HEAD
     /**
      * Cette methode s'occupe de creer les tables de la BD
      * @param db
      */
-=======
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(createTable);
     }
 
-<<<<<<< HEAD
     //Permet de mettre a jour la BD
-=======
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+ nomTable);
         onCreate(db);
     }
 
-<<<<<<< HEAD
     /**
      * Permet de lire un objet dans la bd
      * @param id le id du billet qu'on cherche
      * @return le Billet trouve dans la BD
      */
-=======
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
     public Billet lire(int id){
         SQLiteDatabase db = getReadableDatabase();
 
@@ -137,7 +106,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-<<<<<<< HEAD
         //Creer un objet de type Billet avec les infos lue dans la BD
         Billet billet = new Billet(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1), LocalDate.parse(cursor.getString(2)),
@@ -153,28 +121,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Billet> trouverTout(){
         ArrayList<Billet> listeBillets = new ArrayList<Billet>();
         //Creer un String qui contient le query
-=======
-        Billet billet = new Billet(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), LocalDate.parse(cursor.getString(2)),
-                cursor.getString(4),LocalDate.parse(cursor.getString(3)),
-                cursor.getString(5),cursor.getString(6));
-
-        return billet;
-    }
-
-    public ArrayList<Billet> trouverTout(){
-        ArrayList<Billet> listeBillets = new ArrayList<Billet>();
-
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
         String selectQuery = "SELECT * FROM " + nomTable;
 
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery,null);
 
-<<<<<<< HEAD
         //Boucle qui ajoute dans une liste tous les objets trouve dans la BD
-=======
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
         if(cursor.moveToFirst()){
             do{
                 Billet billet = new Billet(Integer.parseInt(cursor.getString(0)),cursor.getString(1), LocalDate.parse(cursor.getString(2)),
@@ -185,7 +137,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
         return listeBillets;
     }
-<<<<<<< HEAD
 
     /**
      * Permet d'inserer un Billet dans la BD
@@ -198,11 +149,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
          * La variable values est charge de prendre les parametres du billet
          * qui seront utilises pour completer le Query a la BD
          */
-=======
-    public void inserer(Billet unBillet){
-        SQLiteDatabase db = getWritableDatabase();
-
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
         ContentValues values = new ContentValues();
         values.put(billetID,unBillet.getIdBillet());
         values.put(titre,unBillet.getTitre());
@@ -214,7 +160,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.insert(nomTable,null,values);
     }
 
-<<<<<<< HEAD
     /**
      * Permet de modifier un Billet dans la BD
      * @param billet
@@ -227,11 +172,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
          * La variable values est charge de prendre les parametres du billet
          * qui seront utilises pour completer le Query a la BD
          */
-=======
-    public int modifier(Billet billet){
-        SQLiteDatabase db = this.getWritableDatabase();
-
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
         ContentValues values = new ContentValues();
         values.put(contenu,billet.getContenu());
         values.put(dateLimite,billet.getDateLimite().toString());
@@ -241,13 +181,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(billet.getIdBillet())});
     }
 
-<<<<<<< HEAD
     /**
      * Cette methode permet de supprimer un billet dans la base de donnees
      * @param billet
      */
-=======
->>>>>>> 5f25e6d746ff95b69900009f659152157ad7ed95
     public void supprimer(Billet billet){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(nomTable,billetID + " = ?",
