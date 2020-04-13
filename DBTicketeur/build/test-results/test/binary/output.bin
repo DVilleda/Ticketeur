@@ -1,0 +1,12 @@
+
+getTitre
+
+toString
+	getTags
+getNomAuteur
+getIdBillet
+getNomProjet
+getContenu
+	getDateLimite
+
+getDateSoumis
