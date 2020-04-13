@@ -1,0 +1,2 @@
+rootProject.name='My Application'
+include ':app', ':sqlite-jdbc-3.30.1'
