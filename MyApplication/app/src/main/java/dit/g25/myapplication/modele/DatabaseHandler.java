@@ -15,6 +15,15 @@ import androidx.annotation.Nullable;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
+    private static DatabaseHandler singletonInstance;
+
+    public static synchronized DatabaseHandler getInstance(Context context){
+        if (singletonInstance == null) {
+            singletonInstance = new DatabaseHandler(context.getApplicationContext());
+        }
+        return singletonInstance;
+    }
+
     //Nom de la Table
     public static final String nomTable = "Billets";
 
@@ -28,7 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String nomAuteur = "nom_auteur";
 
     //nom de la BD
-    static final String dbname = "BDBillet.db";
+    static final String dbname = "BDBilletAndroid.db";
 
     //Version de la BD
     static final int dbversion =1;
@@ -52,7 +61,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      *
      * @param context to use for locating paths to the the database
      */
-    public DatabaseHandler(@Nullable Context context) {
+    private DatabaseHandler(@Nullable Context context) {
         super(context, dbname, null, dbversion);
     }
 
@@ -68,7 +77,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Billet lire(int id){
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = getReadableDatabase();
 
         //Tables de la BD utilise
         String [] projection = {
@@ -100,21 +109,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         String selectQuery = "SELECT * FROM " + nomTable;
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery,null);
 
         if(cursor.moveToFirst()){
             do{
                 Billet billet = new Billet(Integer.parseInt(cursor.getString(0)),cursor.getString(1), LocalDate.parse(cursor.getString(2)),
                         cursor.getString(4),LocalDate.parse(cursor.getString(3)),
-                        cursor.getString(5),cursor.getString(6));
+                        cursor.getString(6),cursor.getString(5));
                 listeBillets.add(billet);
             }while(cursor.moveToNext());
         }
         return listeBillets;
     }
     public void inserer(Billet unBillet){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(billetID,unBillet.getIdBillet());
@@ -124,6 +133,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(contenu,unBillet.getContenu());
         values.put(nomProjet,unBillet.getNomProjet());
         values.put(nomAuteur,unBillet.getNomAuteur());
+        db.insert(nomTable,null,values);
     }
 
     public int modifier(Billet billet){
