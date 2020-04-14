@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
             // il faut un api min de 26
 
+            //Creation de variables qui vont contenir les dates
             LocalDate localdate = dateCouranteGlobal.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate dateLimite = dateLimiteGlobal;
             //Entrez les valeur dans l'objet Billet.

@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Ticketeur</string>
+    <string name="Titre_actv_2">Liste des Billets dans la base de données</string>
+    <string name="Button_retour">Créer un billet</string>
+    <string name="pr_nom">Prénom</string>
+    <string name="Nom_Famille">Nom</string>
+    <string name="Contenu_Billet">Entrez le texte ici</string>
+    <string name="Titre_Boite_Contenu">Message du billet :</string>
+    <string name="date_courante">Date Courante</string>
+    <string name="Button_Actv_2">Voir Billets</string>
+    <string name="Contenu_Titre">Titre</string>
+    <string name="Button_Send_Billet">Envoyé</string>
+    <string name="Date_limite_select">Choisis une date</string>
+    <string name="date_limite_titre">Date Limite</string>
+    <string name="Date_courante">TextView</string>
 </resources>

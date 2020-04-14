@@ -13,7 +13,7 @@
         android:layout_width="180dp"
         android:layout_height="43dp"
         android:ems="10"
-        android:hint="Prénom"
+        android:hint="@string/pr_nom"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,15 +28,15 @@
         android:layout_width="193dp"
         android:layout_height="43dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="Nom"
+        android:hint="@string/Nom_Famille"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/inputPrenom"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.039" />
+        app:layout_constraintVertical_bias="0.039"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/inputMessage"
@@ -44,19 +44,20 @@
         android:layout_height="226dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Entrez le texte ici"
+        android:hint="@string/Contenu_Billet"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.848" />
+        app:layout_constraintVertical_bias="0.848"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Message du billet :"
+        android:text="@string/Titre_Boite_Contenu"
         app:layout_constraintBottom_toTopOf="@+id/inputMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.028"
@@ -67,9 +68,8 @@
         android:layout_width="93dp"
         android:layout_height="18dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="52dp"
-        android:text="Date Courante"
+        android:text="@string/date_courante"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,9 +80,8 @@
         android:layout_width="170dp"
         android:layout_height="25dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:text="TextView"
+        android:text="@string/Date_courante"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDate" />
@@ -93,8 +92,7 @@
         android:layout_height="19dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="132dp"
-        android:layout_marginRight="132dp"
-        android:text="Date Limite"
+        android:text="@string/date_limite_titre"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputNom" />
@@ -105,8 +103,7 @@
         android:layout_height="26dp"
         android:layout_marginTop="22dp"
         android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:text="Choisis une date"
+        android:text="@string/Date_limite_select"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateLimite" />
@@ -115,7 +112,7 @@
         android:id="@+id/btnSubmit"
         android:layout_width="180dp"
         android:layout_height="48dp"
-        android:text="Envoyé"
+        android:text="@string/Button_Send_Billet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.294"
@@ -128,12 +125,13 @@
         android:layout_height="57dp"
         android:layout_marginBottom="24dp"
         android:ems="10"
-        android:hint="Titre"
+        android:hint="@string/Contenu_Titre"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/inputMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/voirTout"
@@ -143,7 +141,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="23dp"
         android:layout_marginBottom="16dp"
-        android:text="Voir Billets"
+        android:text="@string/Button_Actv_2"
         android:onClick="voirBillets"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
